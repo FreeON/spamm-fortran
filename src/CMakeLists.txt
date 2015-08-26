@@ -1,5 +1,2 @@
-add_library(spamm
-  spamm.F90)
-install(TARGETS spamm
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib)
+add_subdirectory(fortran)
+add_subdirectory(cnc)
