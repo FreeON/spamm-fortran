@@ -1,0 +1,1 @@
+add_test(NAME true COMMAND /bin/true)
