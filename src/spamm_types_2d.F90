@@ -51,9 +51,4 @@ module spamm_types_2d
      type(chunk_bounds_t) :: upper = chunk_bounds_t([ SPAMM_CHUNK_SIZE, SPAMM_CHUNK_SIZE ])
   end type chunk_2d_t
 
-  !> Interface to the equals functions.
-  interface equals
-     module procedure chunk_bounds_equals
-  end interface equals
-
 end module spamm_types_2d
