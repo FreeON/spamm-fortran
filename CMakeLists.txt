@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(spamm C CXX Fortran)
-
-include(FindOpenMP)
+project(spamm Fortran)
 
 include(FindDoxygen)
 if(DOXYGEN_FOUND)
