@@ -68,12 +68,15 @@ contains
   end function convert_dense_to_2d
 
   !> Convert 2d to dense matrix.
+  !!
+  !! @param a The matrix chunk.
+  !! @return The allocated dense matrix.
   function convert_2d_to_dense(a) result(a_dense)
 
     use spamm_chunk_2d
 
     type(chunk_2d_t), pointer, intent(in) :: a
-    double precision, allocatable :: a_dense(:, :)
+    double precision, pointer :: a_dense(:, :)
 
     integer :: i, j
 

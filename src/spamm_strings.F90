@@ -13,15 +13,6 @@ module spamm_strings
     module procedure single_to_string
   end interface to_string
 
-  interface
-     subroutine pointer_to_string(ptr, length, string) bind(C)
-       use, intrinsic :: iso_C_binding
-       type(c_ptr), intent(in) :: ptr
-       integer(c_int), intent(in) :: length
-       character(c_char), intent(inout) :: string(*)
-     end subroutine pointer_to_string
-  end interface
-
 contains
 
   !> Convert an integer to a string.
