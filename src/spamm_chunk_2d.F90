@@ -54,6 +54,19 @@ module spamm_chunk_2d
 
 contains
 
+  !> Calculate the Frobenius norm of a dense matrix.
+  !!
+  !! @param a The dense matrix (of type chunk_matrix_2d_t).
+  !! @return The square of the Frobenius norm.
+  function get_matrix_norm(a) result(norm2)
+
+    type(chunk_matrix_2d_t), intent(in) :: a
+    double precision :: norm2
+
+    norm2 = sum(a%matrix*a%matrix)
+
+  end function get_matrix_norm
+
   !> Return the index in chunk_2d_t::blocks given a matrix index.
   function chunk_block_index(i) result(i_block)
 

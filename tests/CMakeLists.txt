@@ -1,6 +1,7 @@
 add_test(NAME true COMMAND /bin/true)
 
 set(TESTS
+  check_norm.F90
   convert_2d.F90
   multiply_2d.F90)
 
