@@ -2,6 +2,8 @@ program test
 
   use spamm
 
+  implicit none
+
   type(chunk_matrix_2d_t) :: a
   double precision :: norm2
   integer :: i, j

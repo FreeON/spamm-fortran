@@ -52,6 +52,16 @@ module spamm_chunk_2d
      integer :: n_block(2) = [SPAMM_BLOCK_SIZE, SPAMM_BLOCK_SIZE]
   end type chunk_2d_t
 
+  !> Interface for get_parent procedures.
+  interface get_parent
+     module procedure get_parent_2d
+  end interface get_parent
+
+  !> Interface for get_child procedures.
+  interface get_child
+     module procedure get_child_2d
+  end interface get_child
+
 contains
 
   !> Calculate the Frobenius norm of a dense matrix.
@@ -76,6 +86,49 @@ contains
     i_block = i/SPAMM_BLOCK_SIZE+1
 
   end function chunk_block_index
+
+  !> Get the parent index.
+  !!
+  !! @param i The index.
+  !! @return The index of the parent.
+  function get_parent_2d(i) result(parent)
+
+    integer, intent(in) :: i
+    integer :: parent
+
+    parent = (i-2)/4+1
+
+  end function get_parent_2d
+
+  !> The a child index.
+  !!
+  !! @param i The node index.
+  !! @param i_child The row index of the child (defaults to 1)
+  !! @param j_child The column index of the child (defaults to 1)
+  !! @return The child index.
+  function get_child_2d(i, i_child, j_child) result(child)
+
+    integer, intent(in) :: i
+    integer, intent(in), optional :: i_child, j_child
+    integer :: child
+
+    integer :: i_child_, j_child_
+
+    if(present(i_child)) then
+       i_child_ = i_child
+    else
+       i_child_ = 1
+    end if
+
+    if(present(j_child)) then
+       j_child_ = j_child
+    else
+       j_child_ = 1
+    end if
+
+    child = 4*(i-1)+(i_child_-1)+2*j_child_
+
+  end function get_child_2d
 
   !> Convert the meta-data of a chunk to a string.
   !!
