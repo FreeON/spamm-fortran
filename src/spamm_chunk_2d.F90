@@ -93,7 +93,7 @@ contains
 
   !> Write memory layout of chunk to string.
   !!
-  !! @param A The chunk.
+  !! @param a The chunk.
   !! @return The string representation.
   function chunk_2d_memory_layout(a) result (string)
 
@@ -103,19 +103,15 @@ contains
     character(len=1000) :: string
     type(chunk_2d_t), pointer, intent(in) :: a
 
-    type(chunk_matrix_2d_t), pointer :: blocks(:, :)
-
     character(len=100) :: temp
     integer(c_intptr_t) :: ptr
 
     ptr = transfer(c_loc(a), ptr)+storage_size(a)
     write(temp, "(Z32)") ptr
 
-    blocks => a%blocks
-
     write(string, "(A)") "chunk layout:"//C_NEW_LINE// &
          trim(to_string(c_loc(a)))//": chunk start"//C_NEW_LINE// &
-         trim(to_string(c_loc(blocks(1, 1))))//": blocks(1, 1)"//C_NEW_LINE// &
+         trim(to_string(c_loc(a%blocks(1, 1))))//": blocks(1, 1)"//C_NEW_LINE// &
          trim(to_string(c_loc(a%blocks(2, 1))))//": blocks(2, 1)"//C_NEW_LINE// &
          trim(to_string(c_loc(a%blocks(1, 2))))//": blocks(1, 2)"//C_NEW_LINE// &
          trim(to_string(c_loc(a%blocks(SPAMM_CHUNK_BLOCKS, 1))))// &

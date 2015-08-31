@@ -39,6 +39,7 @@ contains
   function convert_dense_to_2d(a_dense) result(chunk)
 
     use spamm_chunk_2d
+    use spamm_decorate_2d
 
     double precision, intent(in) :: a_dense(:, :)
     type(chunk_2d_t), pointer :: chunk
@@ -64,6 +65,8 @@ contains
           end associate
        end do
     end do
+
+    call redecorate(chunk)
 
   end function convert_dense_to_2d
 
