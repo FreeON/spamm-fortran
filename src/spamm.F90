@@ -2,5 +2,6 @@
 module spamm
   use spamm_convert
   use spamm_decorate
+  use spamm_multiply
   use spamm_types
 end module spamm

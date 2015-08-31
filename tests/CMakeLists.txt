@@ -1,7 +1,8 @@
 add_test(NAME true COMMAND /bin/true)
 
 set(TESTS
-  convert_2d.F90)
+  convert_2d.F90
+  multiply_2d.F90)
 
 include_directories(${CMAKE_BINARY_DIR}/src)
 foreach(file ${TESTS})

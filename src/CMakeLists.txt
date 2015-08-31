@@ -6,6 +6,8 @@ set(SPAMM_SOURCES
   spamm_decorate.F90
   spamm_decorate_2d.F90
   spamm_dense_matrix.F90
+  spamm_multiply.F90
+  spamm_multiply_2d.F90
   spamm_strings.F90
   spamm_tree_2d.F90
   spamm_types.F90)
