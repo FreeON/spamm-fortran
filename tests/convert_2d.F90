@@ -4,7 +4,7 @@ program test
 
   implicit none
 
-  integer, parameter :: N = 6
+  integer, parameter :: N = 10
 
   type(chunk_2d_t), pointer :: a
   double precision :: a_dense(N, N)
@@ -13,10 +13,8 @@ program test
   call random_number(a_dense)
   call print_dense_matrix("A", a_dense)
   a => convert(a_dense)
-  call print_dense_matrix("block(1, 1)", a%blocks(1, 1)%matrix)
-  call print_dense_matrix("block(1, 2)", a%blocks(1, 2)%matrix)
-  call print_dense_matrix("block(2, 1)", a%blocks(2, 1)%matrix)
-  call print_dense_matrix("block(2, 2)", a%blocks(2, 2)%matrix)
+  !call print_chunk(a)
+  call check(a)
   write(*, "(A)") trim(chunk_2d_to_string(a))
   write(*, "(A)") trim(chunk_2d_memory_layout(a))
   b_dense => convert(a)

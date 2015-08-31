@@ -1,46 +1,50 @@
-subroutine print_child_indices(parent)
+module check_index
 
   use spamm
 
   implicit none
 
-  integer, intent(in) :: parent
+contains
 
-  integer :: i, j, child
+  subroutine print_child_indices(parent)
 
-  do j = 1, 2
-     do i = 1, 2
-        child = 4*(parent-1)+(i-1)+2*j
-        write(*, "(A)") "parent: "//trim(to_string(parent)) &
-             //", child("//trim(to_string(i))//", "//trim(to_string(j))//"): " &
-             //trim(to_string(get_child(parent, i, j)))
-        if(child /= get_child(parent, i, j)) then
-           write(*, *) "incorrect child index"
-           error stop
-        end if
-     end do
-  end do
+    integer, intent(in) :: parent
 
-end subroutine print_child_indices
+    integer :: i, j, child
 
-subroutine print_parent_index(child, parent_ref)
+    do j = 1, 2
+       do i = 1, 2
+          child = 4*(parent-1)+(i-1)+2*j
+          write(*, "(A)") "parent: "//trim(to_string(parent)) &
+               //", child("//trim(to_string(i))//", "//trim(to_string(j))//"): " &
+               //trim(to_string(get_child(parent, i, j)))
+          if(child /= get_child(parent, i, j)) then
+             write(*, *) "incorrect child index"
+             error stop
+          end if
+       end do
+    end do
 
-  use spamm
+  end subroutine print_child_indices
 
-  implicit none
+  subroutine print_parent_index(child, parent_ref)
 
-  integer, intent(in) :: child, parent_ref
+    integer, intent(in) :: child, parent_ref
 
-  write(*, "(A)") "child: "//trim(to_string(child)) &
-       //", parent: "//trim(to_string(get_parent(child)))
-  if(get_parent(child) /= parent_ref) then
-     write(*, *) "wrong parent index"
-     error stop
-  end if
+    write(*, "(A)") "child: "//trim(to_string(child)) &
+         //", parent: "//trim(to_string(get_parent(child)))
+    if(get_parent(child) /= parent_ref) then
+       write(*, *) "wrong parent index"
+       error stop
+    end if
 
-end subroutine print_parent_index
+  end subroutine print_parent_index
+
+end module check_index
 
 program test
+
+  use check_index
 
   implicit none
 

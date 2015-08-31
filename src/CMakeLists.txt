@@ -1,6 +1,9 @@
 set(SPAMM_SOURCES
   spamm.F90
-  spamm_chunk_2d.F90
+  spamm_check.F90
+  spamm_check_2d.F90
+  spamm_constructor.F90
+  spamm_constructor_2d.F90
   spamm_convert.F90
   spamm_convert_2d.F90
   spamm_decorate.F90
@@ -9,8 +12,9 @@ set(SPAMM_SOURCES
   spamm_multiply.F90
   spamm_multiply_2d.F90
   spamm_strings.F90
-  spamm_tree_2d.F90
-  spamm_types.F90)
+  spamm_types.F90
+  spamm_types_chunk_2d.F90
+  spamm_types_tree_2d.F90)
 
 foreach(f ${SPAMM_SOURCES})
   get_filename_component(MOD ${f} NAME_WE)

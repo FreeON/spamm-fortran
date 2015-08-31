@@ -1,5 +1,6 @@
-  !> Multiply 2d spamm objects.
+!> Multiply 2d spamm objects.
 module spamm_multiply_2d
+
   implicit none
 
   !> Multiply interface.
@@ -23,7 +24,7 @@ contains
   !! @param beta Factor @f$ \beta @f$.
   function spamm_multiply_2d_2d(a, b, c, alpha, beta) result(d)
 
-    use spamm_chunk_2d
+    use spamm_types_chunk_2d
 
     type(chunk_2d_t), pointer, intent(in) :: a, b
     type(chunk_2d_t), pointer, intent(in), optional :: c
