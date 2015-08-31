@@ -1,6 +1,29 @@
 cmake_minimum_required(VERSION 2.8)
 project(spamm Fortran)
 
+set(GNU_Fortran_FLAGS_DEBUG "-O0 -g")
+set(GNU_Fortran_FLAGS_RELEASE "-O2 -g")
+set(Intel_Fortran_FLAGS_DEBUG "-O0 -g -debug all -check all -traceback")
+set(Intel_Fortran_FLAGS_RELEASE "-O2 -g")
+
+# Make sure we get the right RPATH. We want the RPATH to be the build
+# path and after installing, the actual installed library path.
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+endif()
+
+if(NOT CMAKE_Fortran_FLAGS)
+  if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU" OR
+      CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
+    set(CMAKE_Fortran_FLAGS_DEBUG ${${CMAKE_Fortran_COMPILER_ID}_Fortran_FLAGS_DEBUG})
+    set(CMAKE_Fortran_FLAGS_RELEASE ${CMAKE_Fortran_COMPILER_ID}_Fortran_FLAGS_RELEASE)
+  else()
+    message(STATUS "Unknown compiler ${CMAKE_Fortran_COMPILER_ID}")
+  endif()
+endif()
+
 include(FindDoxygen)
 if(DOXYGEN_FOUND)
   configure_file(docs/Doxygen.in docs/Doxygen)
