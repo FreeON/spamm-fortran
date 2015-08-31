@@ -22,9 +22,9 @@ contains
   function int_to_string(i) result(str_i)
 
     integer, intent(in) :: i
+    character(len=100) :: str_i
 
     character(len=100) :: temp
-    character(len=100) :: str_i
 
     write(temp, *) i
     str_i = trim(adjustl(temp))
@@ -38,9 +38,9 @@ contains
   function long_int_to_string(i) result(str_i)
 
     integer(selected_int_kind(15)), intent(in) :: i
+    character(len=100) :: str_i
 
     character(len=100) :: temp
-    character(len=100) :: str_i
 
     write(temp, *) i
     str_i = trim(adjustl(temp))
@@ -55,8 +55,9 @@ contains
   function single_to_string(x) result(str_x)
 
     real, intent(in) :: x
+    character(len=100) :: str_x
+
     character(len=100) :: temp
-    character(len=100), allocatable :: str_x
 
     write(temp, "(ES16.8E3)") x
     str_x = trim(adjustl(temp))
@@ -70,9 +71,10 @@ contains
   function double_array_to_string(x) result(str_x)
 
     double precision, intent(in) :: x(:)
+    character(len=100) :: str_x
+
     character(len=1000) :: temp
     character(len=100) :: format_string
-    character(len=100), allocatable :: str_x
     integer :: i
 
     write(format_string, "(A,I4,A)") "(", size(x), "ES16.8E3)"
@@ -88,8 +90,9 @@ contains
   function double_to_string(x) result(str_x)
 
     double precision, intent(in) :: x
+    character(len=100) :: str_x
+
     character(len=100) :: temp
-    character(len=100), allocatable :: str_x
 
     write(temp, "(ES16.8E3)") x
     str_x = trim(adjustl(temp))
@@ -105,9 +108,9 @@ contains
     use, intrinsic :: iso_C_binding
 
     type(c_ptr), intent(in) :: ptr
+    character(len=100) :: string
 
     integer(c_intptr_t) :: ptr_int
-    character(len=100) :: string
 
     ptr_int = transfer(ptr, ptr_int)
     write(string, "(Z32)") ptr_int
