@@ -70,8 +70,8 @@ if(SPAMM_TESTING)
   add_subdirectory(tests)
 endif()
 
-set(SPAMM_BENHCHMARKS FALSE
+set(SPAMM_BENCHMARKS FALSE
   CACHE BOOL "Whether to build the benchmarks.")
-if(SPAMM_BENHCHMARKS)
+if(SPAMM_BENCHMARKS)
   add_subdirectory(benchmarks)
 endif()
