@@ -11,10 +11,12 @@ addons:
       - g++-4.7
       - g++-4.8
       - g++-4.9
+      - g++-5
       - gfortran-4.6
       - gfortran-4.7
       - gfortran-4.8
       - gfortran-4.9
+      - gfortran-5
 
 env:
   matrix:
@@ -50,6 +52,16 @@ env:
       FC="gfortran-${GCC_VERSION}"
     - CMAKE_BUILD_TYPE=Debug   
       GCC_VERSION=4.9 
+      CC="gcc-${GCC_VERSION}" 
+      CXX="g++-${GCC_VERSION}"
+      FC="gfortran-${GCC_VERSION}"
+    - CMAKE_BUILD_TYPE=Release 
+      GCC_VERSION=5
+      CC="gcc-${GCC_VERSION}" 
+      CXX="g++-${GCC_VERSION}"
+      FC="gfortran-${GCC_VERSION}"
+    - CMAKE_BUILD_TYPE=Debug   
+      GCC_VERSION=5
       CC="gcc-${GCC_VERSION}" 
       CXX="g++-${GCC_VERSION}"
       FC="gfortran-${GCC_VERSION}"
