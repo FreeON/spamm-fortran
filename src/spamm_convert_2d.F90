@@ -19,8 +19,7 @@ contains
 
     use spamm_types_chunk_2d
     use spamm_constructor_2d
-    use spamm_decorate_2d
-    use spamm_strings
+    !use spamm_strings
 
     double precision, intent(in) :: a(:, :)
     type(chunk_2d_t), pointer :: chunk
