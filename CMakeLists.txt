@@ -4,8 +4,9 @@ project(spamm Fortran)
 set(GNU_Fortran_FLAGS_DEBUG "-O0 -g -fvar-tracking-assignments -fcheck=all"
   "-Wall -Wimplicit-interface -Wuninitialized -Wimplicit-procedure")
 set(GNU_Fortran_FLAGS_RELEASE "-O2 -g")
+
 set(Intel_Fortran_FLAGS_DEBUG "-O0 -g -debug all -check all -traceback")
-set(Intel_Fortran_FLAGS_RELEASE "-O2 -g")
+set(Intel_Fortran_FLAGS_RELEASE "-O2 -g -ipo")
 
 # Make sure we get the right RPATH. We want the RPATH to be the build
 # path and after installing, the actual installed library path.
@@ -19,7 +20,7 @@ if(NOT CMAKE_Fortran_FLAGS)
   if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU" OR
       CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
     set(CMAKE_Fortran_FLAGS_DEBUG ${${CMAKE_Fortran_COMPILER_ID}_Fortran_FLAGS_DEBUG})
-    set(CMAKE_Fortran_FLAGS_RELEASE ${CMAKE_Fortran_COMPILER_ID}_Fortran_FLAGS_RELEASE)
+    set(CMAKE_Fortran_FLAGS_RELEASE ${${CMAKE_Fortran_COMPILER_ID}_Fortran_FLAGS_RELEASE})
     string(REPLACE ";" " " CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}")
     string(REPLACE ";" " " CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}")
   else()
