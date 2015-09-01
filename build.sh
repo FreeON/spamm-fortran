@@ -16,6 +16,7 @@ cmake .. \
   -DSPAMM_BLOCK_SIZE=${SPAMM_BLOCK_SIZE:=4} \
   -DSPAMM_CHUNK_SIZE=${SPAMM_CHUNK_SIZE:=32} \
   -DSPAMM_TESTING=yes \
+  -DSPAMM_BENCHMARKS=yes \
   || exit
 make || exit
 ctest --verbose || exit

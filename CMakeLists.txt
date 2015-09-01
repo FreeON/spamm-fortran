@@ -63,3 +63,9 @@ if(SPAMM_TESTING)
   enable_testing()
   add_subdirectory(tests)
 endif()
+
+set(SPAMM_BENHCHMARKS FALSE
+  CACHE BOOL "Whether to build the benchmarks.")
+if(SPAMM_BENHCHMARKS)
+  add_subdirectory(benchmarks)
+endif()
